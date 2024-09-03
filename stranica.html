@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Earthquake Data</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <h1>Recent Earthquakes</h1>
+
+    <!-- Earthquake Alert Image -->
+    <img id="earthquake-alert" src="earthquake.png" alt="Earthquake Alert">
+
+    <table>
+        <thead>
+            <tr>
+                <th>Region</th>
+                <th>Magnitude</th>
+                <th>Date</th>
+                <th>Time</th>
+                <th>Depth (km)</th>
+                <th>Latitude</th>
+                <th>Longitude</th>
+            </tr>
+        </thead>
+        <tbody id="earthquake-table-body">
+            <!-- Data will be inserted here -->
+        </tbody>
+    </table>
+
+    <script>
+        // Function to fetch and update data
+        function fetchData() {
+            fetch('http://localhost:3000/earthquake-data')
+                .then(response => response.json())
+                .then(data => {
+                    const tableBody = document.getElementById('earthquake-table-body');
+                    tableBody.innerHTML = ''; // Clear existing table content
+
+                    data.forEach(earthquake => {
+                        const row = document.createElement('tr');
+                        row.innerHTML = `
+                            <td>${earthquake.region}</td>
+                            <td>${earthquake.magnitude}</td>
+                            <td>${earthquake.date}</td>
+                            <td>${earthquake.time}</td>
+                            <td>${earthquake.depth}</td>
+                            <td>${earthquake.latitude}</td>
+                            <td>${earthquake.longitude}</td>
+                        `;
+                        tableBody.appendChild(row);
+                    });
+
+                    // Trigger the shake animation when new data is added
+                    startShakeAnimation();
+                })
+                .catch(error => console.error('Error fetching data:', error));
+        }
+
+        // Function to trigger shaking animation
+        function startShakeAnimation() {
+            const alertImage = document.getElementById('earthquake-alert');
+
+            alertImage.classList.add('shake'); // Add the shake class to start the animation
+
+            // Remove the shaking animation after 3 seconds
+            setTimeout(() => {
+                alertImage.classList.remove('shake'); // Stop shaking
+            }, 3000);
+        }
+
+        // Initial fetch and start polling every 1 minute (60000 milliseconds)
+        fetchData(); // Fetch data immediately when the page loads
+        setInterval(fetchData, 60000); // Poll the server every 1 minute
+    </script>
+</body>
+</html>

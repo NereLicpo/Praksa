@@ -1,4 +1,5 @@
 const puppeteer = require('puppeteer');
+const fs = require('fs');
 
 (async () => {
     // Launch a headless browser instance
@@ -33,8 +34,10 @@ const puppeteer = require('puppeteer');
         });
     });
 
-    // Output the scraped data
-    console.log(tableData);
+    // Save the scraped data to a JSON file
+    fs.writeFileSync('earthquake_data.json', JSON.stringify(tableData, null, 2));
+
+    console.log('Data has been scraped and saved to earthquake_data.json');
 
     // Close the browser
     await browser.close();
