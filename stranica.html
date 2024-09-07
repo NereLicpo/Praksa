@@ -3,13 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <title>Earthquake Data</title>
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <h1>Recent Earthquakes</h1>
 
     <!-- Earthquake Alert Image -->
-    <img id="earthquake-alert" src="earthquake.png" alt="Earthquake Alert">
+    <img id="earthquake-alert" src="earthquake.png" alt="Earthquake Alert" style="width: 150px; height: auto;">
 
     <table>
         <thead>
@@ -29,6 +29,8 @@
     </table>
 
     <script>
+        let previousFirstEarthquake = null; // To store the previous first earthquake
+
         // Function to fetch and update data
         function fetchData() {
             fetch('http://localhost:3000/earthquake-data')
@@ -37,6 +39,7 @@
                     const tableBody = document.getElementById('earthquake-table-body');
                     tableBody.innerHTML = ''; // Clear existing table content
 
+                    // Update the table with new data
                     data.forEach(earthquake => {
                         const row = document.createElement('tr');
                         row.innerHTML = `
@@ -51,8 +54,24 @@
                         tableBody.appendChild(row);
                     });
 
-                    // Trigger the shake animation when new data is added
-                    startShakeAnimation();
+                    // Check if the first earthquake has changed
+                    if (data.length > 0) {
+                        const newFirstEarthquake = data[0]; // Get the first earthquake from the new data
+
+                        // Compare new data with previous data
+                        if (!previousFirstEarthquake || 
+                            newFirstEarthquake.region !== previousFirstEarthquake.region ||
+                            newFirstEarthquake.magnitude !== previousFirstEarthquake.magnitude ||
+                            newFirstEarthquake.date !== previousFirstEarthquake.date ||
+                            newFirstEarthquake.time !== previousFirstEarthquake.time) {
+                            
+                            // Trigger the shake animation if different
+                            startShakeAnimation();
+                        }
+
+                        // Update the previousFirstEarthquake with the current first earthquake
+                        previousFirstEarthquake = newFirstEarthquake;
+                    }
                 })
                 .catch(error => console.error('Error fetching data:', error));
         }
