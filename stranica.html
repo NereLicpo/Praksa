@@ -6,10 +6,10 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <h1>Recent Earthquakes</h1>
+    <h1>Recent Earthquakes In Europe</h1>
 
     <!-- Earthquake Alert Image -->
-    <img id="earthquake-alert" src="earthquake.png" alt="Earthquake Alert" style="width: 150px; height: auto;">
+    <img id="earthquake-alert" src="earthquake.png" alt="Earthquake Alert" >
 
     <table>
         <thead>
@@ -27,7 +27,15 @@
             <!-- Data will be inserted here -->
         </tbody>
     </table>
-
+    <p>
+        Time zone: UTC+01:00 
+        
+    </p>
+        
+    <p class*="data-source">
+        Source: 
+        <a href="https://www.potresi.hr/" target="_blank">Potresi.hr</a>
+    </p>
     <script>
         let previousFirstEarthquake = null; // To store the previous first earthquake
 

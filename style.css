@@ -1,18 +1,24 @@
+h1 { 
+    font-size: 3rem;  /* Responsive heading size */
+    text-shadow: 0.3rem 0.3rem 0px rgb(131, 97, 4); /* Shadow size adjusted with rem */
+} 
+
 body {
     font-family: Arial, sans-serif;
-    margin: 20px;
+    margin: 2rem;  /* Margin adjusted for better scalability */
 }
 
 table {
     width: 100%;
     border-collapse: collapse;
-    margin-top: 20px;
+    margin-top: 2rem;  /* Margin using rem for consistency */
+    font-size:1rem;
 }
 
 th, td {
-    padding: 8px;
+    padding: 0.8rem;  /* Padding in rem for consistent scaling */
     text-align: left;
-    border-bottom: 1px solid #ddd;
+    border-bottom: 0.1rem solid #ddd;  /* Border in rem */
 }
 
 th {
@@ -21,17 +27,17 @@ th {
 
 /* Shaking animation */
 @keyframes shake {
-    0% { transform: translate(1px, 1px) rotate(0deg); }
-    10% { transform: translate(-1px, -2px) rotate(-1deg); }
-    20% { transform: translate(-3px, 0px) rotate(1deg); }
-    30% { transform: translate(3px, 2px) rotate(0deg); }
-    40% { transform: translate(1px, -1px) rotate(1deg); }
-    50% { transform: translate(-1px, 2px) rotate(-1deg); }
-    60% { transform: translate(-3px, 1px) rotate(0deg); }
-    70% { transform: translate(3px, 1px) rotate(-1deg); }
-    80% { transform: translate(-1px, -1px) rotate(1deg); }
-    90% { transform: translate(1px, 2px) rotate(0deg); }
-    100% { transform: translate(1px, -2px) rotate(-1deg); }
+    0% { transform: translate(0.1rem, 0.1rem) rotate(0deg); }
+    10% { transform: translate(-0.1rem, -0.2rem) rotate(-1deg); }
+    20% { transform: translate(-0.3rem, 0rem) rotate(1deg); }
+    30% { transform: translate(0.3rem, 0.2rem) rotate(0deg); }
+    40% { transform: translate(0.1rem, -0.1rem) rotate(1deg); }
+    50% { transform: translate(-0.1rem, 0.2rem) rotate(-1deg); }
+    60% { transform: translate(-0.3rem, 0.1rem) rotate(0deg); }
+    70% { transform: translate(0.3rem, 0.1rem) rotate(-1deg); }
+    80% { transform: translate(-0.1rem, -0.1rem) rotate(1deg); }
+    90% { transform: translate(0.1rem, 0.2rem) rotate(0deg); }
+    100% { transform: translate(0.1rem, -0.2rem) rotate(-1deg); }
 }
 
 /* Shake class */
@@ -42,10 +48,27 @@ th {
 
 /* Image styling */
 #earthquake-alert {
-    width: 500px; /* Size of the image */
-    height: 500px;
-    margin-top: 20px;
-    margin-left:auto;
-    margin-right:auto;
-    display: block; /* Ensure it's always visible */
+    width: 35rem; /* Size of the image in rem for responsiveness */
+    height: auto;  /* Maintain aspect ratio */
+    margin-top: 2rem;
+    margin-left: auto;
+    margin-right: auto;
+    display: block;  /* Ensure it's always centered */
+    box-shadow: 0rem 0rem 1rem rgba(0, 0, 0, 0.5); /* Shadow with rem units */
+}
+
+.data-source {
+    font-size: 0.9rem;  /* Adjust to match your design */
+    color: #333;        /* Darker text color */
+    margin-top: 1rem;   /* Add space above */
+    text-align: left;   /* Align text to the left */
+}
+
+.data-source a {
+    color: #0066cc;     /* Link color */
+    text-decoration: none;  /* Remove underline by default */
+}
+
+.data-source a:hover {
+    text-decoration: underline;  /* Underline on hover */
 }
